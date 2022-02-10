@@ -1,5 +1,4 @@
 import { CONSTANTS } from './CONSTANTS.js';
-console.log(CONSTANTS);
 export default class Storage {
   static load(name) {
     return JSON.parse(

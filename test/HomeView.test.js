@@ -50,7 +50,6 @@ describe('HomeViewTest', () => {
         .querySelector('button-component')
         .shadowRoot.querySelector('button')
         .getAttribute('disabled');
-      console.log(btnDisabled);
       expect(btnDisabled).to.be.equal(null);
       done();
     }, 1);
