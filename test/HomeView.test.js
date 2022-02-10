@@ -24,7 +24,8 @@ describe('HomeViewTest', () => {
     input.value = '';
     input.dispatchEvent(new Event('input'));
     const btnDisabled = element.shadowRoot
-      .querySelector('#home__enterBtn')
+      .querySelector('button-component')
+      .shadowRoot.querySelector('button')
       .getAttribute('disabled');
     expect(btnDisabled).to.be.equal('');
   });
@@ -34,7 +35,8 @@ describe('HomeViewTest', () => {
     input.value = '*^¿?·';
     input.dispatchEvent(new Event('input'));
     const btnDisabled = element.shadowRoot
-      .querySelector('#home__enterBtn')
+      .querySelector('button-component')
+      .shadowRoot.querySelector('button')
       .getAttribute('disabled');
     expect(btnDisabled).to.be.equal('');
   });
@@ -45,7 +47,8 @@ describe('HomeViewTest', () => {
     input.dispatchEvent(new Event('input'));
     setTimeout(() => {
       const btnDisabled = element.shadowRoot
-        .querySelector('#home__enterBtn')
+        .querySelector('button-component')
+        .shadowRoot.querySelector('button')
         .getAttribute('disabled');
       console.log(btnDisabled);
       expect(btnDisabled).to.be.equal(null);
