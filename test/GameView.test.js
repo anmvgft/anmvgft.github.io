@@ -19,21 +19,9 @@ describe('GameView', () => {
       html`<game-view user="nadie" gameType="classic"></game-view>`
     );
 
-    stu.onCall(0).returns(
-      new Promise(resolve => {
-        resolve('rock');
-      })
-    );
-    stu.onCall(1).returns(
-      new Promise(resolve => {
-        resolve('rock');
-      })
-    );
-    stu.onCall(2).returns(
-      new Promise(resolve => {
-        resolve('rock');
-      })
-    );
+    stu.onCall(0).returns(CONSTANTS.ROCK);
+    stu.onCall(1).returns(CONSTANTS.ROCK);
+    stu.onCall(2).returns(CONSTANTS.ROCK);
   });
 
   it('click exit btn triggers unsets the user', done => {
@@ -53,15 +41,9 @@ describe('GameView', () => {
 
   it('responds with AI on user move in tie', done => {
     const rock = element.shadowRoot.querySelector('game-option[name=rock]');
-    const rockMock = {
-      name: 'rock',
-      loosesAgainst() {
-        return false;
-      },
-    };
     rock.dispatchEvent(
       new CustomEvent('option-selected-event', {
-        detail: rockMock,
+        detail: CONSTANTS.ROCK,
         bubbles: true,
         composed: true,
       })
@@ -99,15 +81,10 @@ describe('GameView', () => {
 
   it('responds with AI on user move in user won', done => {
     const rock = element.shadowRoot.querySelector('game-option[name=rock]');
-    const rockMock = {
-      name: 'paper',
-      loosesAgainst() {
-        return false;
-      },
-    };
+
     rock.dispatchEvent(
       new CustomEvent('option-selected-event', {
-        detail: rockMock,
+        detail: CONSTANTS.PAPER,
         bubbles: true,
         composed: true,
       })

@@ -17,14 +17,10 @@ describe('Option', () => {
 
   it('triggers event option-selected-event', done => {
     window.addEventListener('option-selected-event', event => {
-      expect(event.detail.name).to.be.equal(CONSTANTS.PAPER);
+      expect(event.detail).to.be.equal(CONSTANTS.PAPER);
       done();
     });
     element.shadowRoot.querySelector('article.option__btn').click();
-  });
-
-  it('rock looses against paper', () => {
-    expect(element.loosesAgainst([CONSTANTS.SCISSORS])).to.be.equal(false);
   });
 
   it('passes the a11y audit', async () => {

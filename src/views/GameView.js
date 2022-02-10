@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 import Player from '../classes/Player.js';
 import { FirerMixin } from '../helpers/FirerMixin.js';
 import Storage from '../helpers/Storage.js';
-import AI from '../classes/AI.js';
+import GameEngine from '../classes/GameEngine.js';
 import { CONSTANTS, GAMEOPTIONS, GAMETYPES } from '../helpers/CONSTANTS.js';
 
 export class Game extends FirerMixin(LitElement) {
@@ -65,6 +65,8 @@ export class Game extends FirerMixin(LitElement) {
     this.gameOptions = GAMEOPTIONS.filter(go =>
       GAMETYPES[this.gameType].includes(go.name)
     );
+
+    this.game = new GameEngine(this.player, this.gameOptions);
   }
 
   resetFields() {
@@ -77,23 +79,14 @@ export class Game extends FirerMixin(LitElement) {
     this.resetFields();
     this.AIThinking = true;
     const playerChoice = ev.detail;
-    this.playerChoiceStr = `You: ${ev.detail.name}`;
-    AI.play(this.lastAIMove, this.gameOptions).then(AIchoice => {
-      this.AIchoice = AIchoice;
-      this.AIchoiceStr = ` | Bot : ${AIchoice}`;
-      this.lastAIMove = this.AIchoice;
-      const userWon = !playerChoice.loosesAgainst(this.AIchoice);
-      this.result = 'Result : ';
-      if (this.AIchoice === ev.detail.name) {
-        this.result += "It's a tie!";
-      } else if (userWon) {
-        this.result += 'You won';
-        this.player.addPoint();
-      } else {
-        this.result += 'AI won';
-      }
+
+    this.playerChoiceStr = `You: ${playerChoice}`;
+    setTimeout(() => {
+      const gameResult = this.game.chooseWinner(playerChoice);
+      this.AIchoiceStr = ` | Bot : ${gameResult[0]}`;
+      this.result = `Result : ${gameResult[1]}`;
       this.AIThinking = false;
-    });
+    }, CONSTANTS.AI_RESPONSE_TIMEOUT);
   }
 
   renderResult() {
@@ -110,7 +103,6 @@ export class Game extends FirerMixin(LitElement) {
           <game-option
             @option-selected-event="${this.play}"
             name="${gameOpt.name}"
-            .looseAgainst="${gameOpt.looseAgainst}"
             ?AIThinking="${this.AIThinking}"
           ></game-option>
         `

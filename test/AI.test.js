@@ -3,7 +3,7 @@ import AI from '../src/classes/AI.js';
 import { CONSTANTS } from '../src/helpers/CONSTANTS.js';
 
 describe('AI', () => {
-  it('AI doesnt repeat moves', done => {
+  it('AI doesnt repeat moves', () => {
     const gameOptions = [
       {
         name: CONSTANTS.ROCK,
@@ -26,9 +26,7 @@ describe('AI', () => {
         looseAgainst: [CONSTANTS.PAPER, CONSTANTS.LIZARD],
       },
     ];
-    AI.play('rock', gameOptions).then(choice1 => {
-      expect(choice1).to.be.not.equal('rock');
-      done();
-    });
+    const choice1 = AI.play('rock', gameOptions);
+    expect(choice1).to.be.not.equal('rock');
   });
 });

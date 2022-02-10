@@ -5,6 +5,7 @@ export class ButtonComponent extends LitElement {
     return {
       classes: { type: String },
       txt: { type: String },
+      disbl: { type: Boolean },
     };
   }
 
@@ -45,6 +46,10 @@ export class ButtonComponent extends LitElement {
   }
 
   render() {
-    return html` <button class="button ${this.classes}">${this.txt}</button> `;
+    return html`
+      <button class="button ${this.classes}" ?disabled="${this.disbl}">
+        ${this.txt}
+      </button>
+    `;
   }
 }

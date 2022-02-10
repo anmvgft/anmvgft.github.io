@@ -76,11 +76,8 @@ export class Home extends FirerMixin(LitElement) {
 
   inputUser(ev) {
     this.userName = ev.target.value;
-    if (
-      this.userName !== '' &&
-      !this.userName &&
-      !this.userName.match(/^[a-z0-9]*$/i)
-    ) {
+
+    if (!this.userName || !this.userName.match(/^[a-z0-9]*$/i)) {
       this.userName = '';
     }
   }
@@ -112,7 +109,7 @@ export class Home extends FirerMixin(LitElement) {
         id="home__enterBtn"
         txt="Enter"
         @click="${this.setUser}"
-        ?disabled="${this.userName === ''}"
+        .disbl="${this.userName === ''}"
       ></button-component>
     </main>`;
   }

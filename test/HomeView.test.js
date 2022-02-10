@@ -74,6 +74,16 @@ describe('HomeViewTest', () => {
     }, 1);
   });
 
+  it('chooses game type', done => {
+    const select = element.shadowRoot.querySelector('select');
+    select.value = CONSTANTS.SPOCK;
+    select.dispatchEvent(new Event('change'));
+    setTimeout(() => {
+      expect(element.gameType).to.be.equal(CONSTANTS.SPOCK);
+      done();
+    }, 1);
+  });
+
   it('passes the a11y audit', async () => {
     await expect(element).shadowDom.to.be.accessible();
   });
