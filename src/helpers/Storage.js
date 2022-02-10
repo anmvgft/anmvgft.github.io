@@ -1,20 +1,20 @@
 import { CONSTANTS } from './CONSTANTS.js';
-
+console.log(CONSTANTS);
 export default class Storage {
   static load(name) {
     return JSON.parse(
-      window.localStorage.getItem(`${CONSTANTS.SAVEPREFIX} ${name}`)
+      window.localStorage.getItem(`${CONSTANTS.SAVE_PREFIX}${name}`)
     );
   }
 
   static save(name, data) {
     window.localStorage.setItem(
-      `${CONSTANTS.SAVEPREFIX} ${name}`,
+      `${CONSTANTS.SAVE_PREFIX}${name}`,
       JSON.stringify(data)
     );
   }
 
   static remove(name) {
-    window.localStorage.removeItem(`${CONSTANTS.SAVEPREFIX} ${name}`);
+    window.localStorage.removeItem(`${CONSTANTS.SAVE_PREFIX}${name}`);
   }
 }
