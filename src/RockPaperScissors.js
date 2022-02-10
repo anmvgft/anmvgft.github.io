@@ -3,9 +3,6 @@ import { LitElement, html } from 'lit';
 export class RockPaperScissors extends LitElement {
   static get properties() {
     return {
-      currentView: {
-        type: String,
-      },
       currentUser: {
         type: Object,
       },
