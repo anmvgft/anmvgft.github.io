@@ -8,14 +8,7 @@ export default class Player {
   }
 
   searchUserScore() {
-    let userData = Storage.load(this.name);
-    if (!userData) {
-      userData = {
-        name: this.name,
-        score: 0,
-      };
-    }
-    return userData.score;
+    return Storage.load(this.name)?.score || 0;
   }
 
   saveUserScore() {

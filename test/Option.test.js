@@ -20,7 +20,7 @@ describe('Option', () => {
       expect(event.detail).to.be.equal(CONSTANTS.PAPER);
       done();
     });
-    element.shadowRoot.querySelector('article.option__btn').click();
+    element.shadowRoot.querySelector('a.option__btn').click();
   });
 
   it('passes the a11y audit', async () => {
