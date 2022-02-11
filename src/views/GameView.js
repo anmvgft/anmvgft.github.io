@@ -11,9 +11,6 @@ export class Game extends FirerMixin(LitElement) {
       user: { type: String },
       gameType: { type: String },
       AIThinking: { type: Boolean },
-      lastAIMove: { type: String },
-      AIchoice: { type: String },
-      playerChoiceStr: { type: String },
     };
   }
 

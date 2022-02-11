@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+  SAVE_PREFIX: 'RPS-',
   ISPLAYING: 'isPlaying',
   ROCK: 'rock',
   PAPER: 'paper',
@@ -11,7 +12,6 @@ export const CONSTANTS = {
   },
   AI_RESPONSE_TIMEOUT: 1000,
   RESULT_SHOW_TIMEOUT: 500,
-  SAVE_PREFIX: 'RPS-',
 };
 
 export const GAMEOPTIONS = [

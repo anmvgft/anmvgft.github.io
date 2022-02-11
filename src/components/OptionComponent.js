@@ -5,7 +5,6 @@ export class Option extends FirerMixin(LitElement) {
   static get properties() {
     return {
       name: { type: String },
-      // looseAgainst: { type: Array },
       AIThinking: { type: Boolean },
     };
   }
@@ -59,10 +58,6 @@ export class Option extends FirerMixin(LitElement) {
       this.fire('option-selected-event', this.name);
     }
   }
-
-  // loosesAgainst(against) {
-  //   return this.looseAgainst.includes(against);
-  // }
 
   render() {
     return html`
