@@ -1,10 +1,13 @@
 import AI from './AI.js';
+import { GAMEOPTIONS, GAMETYPES } from '../helpers/CONSTANTS.js';
 
 export default class GameEngine {
-  constructor(player, gameOptions) {
+  constructor(player) {
     this.player = player;
-    this.gameOptions = gameOptions;
     this.lastAIMove = '';
+    this.gameOptions = GAMEOPTIONS.filter(go =>
+      GAMETYPES[player.gameType].includes(go.name)
+    );
   }
 
   chooseWinner(playerChoice) {
@@ -12,7 +15,7 @@ export default class GameEngine {
     this.lastAIMove = AIChoice;
 
     if (playerChoice === AIChoice) {
-      return [AIChoice, "It's a tie!"];
+      return [` | Bot : ${AIChoice}`, "It's a tie!"];
     }
     const userWon = this.gameOptions
       .filter(e => e.name === AIChoice)
@@ -24,6 +27,7 @@ export default class GameEngine {
     if (userWon) {
       this.player.addPoint();
     }
-    return [AIChoice, result];
+
+    return [` | Bot : ${AIChoice}`, `Result : ${result}`];
   }
 }

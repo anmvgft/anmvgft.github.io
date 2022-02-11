@@ -51,7 +51,7 @@ describe('GameView', () => {
     setTimeout(() => {
       expect(
         element.shadowRoot.querySelector('#game__result').textContent
-      ).to.be.equal("Result : It's a tie!");
+      ).to.be.equal("It's a tie!");
       done();
     }, 1200);
   });

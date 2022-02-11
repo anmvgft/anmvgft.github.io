@@ -1,7 +1,8 @@
 import Storage from '../helpers/Storage.js';
 
 export default class Player {
-  constructor(name) {
+  constructor(name, gameType) {
+    this.gameType = gameType;
     this.name = name;
     this.score = this.searchUserScore(this.name);
   }

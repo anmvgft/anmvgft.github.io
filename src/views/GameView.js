@@ -3,7 +3,7 @@ import Player from '../classes/Player.js';
 import { FirerMixin } from '../helpers/FirerMixin.js';
 import Storage from '../helpers/Storage.js';
 import GameEngine from '../classes/GameEngine.js';
-import { CONSTANTS, GAMEOPTIONS, GAMETYPES } from '../helpers/CONSTANTS.js';
+import { CONSTANTS } from '../helpers/CONSTANTS.js';
 
 export class Game extends FirerMixin(LitElement) {
   static get properties() {
@@ -56,35 +56,26 @@ export class Game extends FirerMixin(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.player = new Player(this.user);
+    this.player = new Player(this.user, this.gameType);
     Storage.save(CONSTANTS.ISPLAYING, {
       user: this.user,
       gameType: this.gameType,
     });
-
-    this.gameOptions = GAMEOPTIONS.filter(go =>
-      GAMETYPES[this.gameType].includes(go.name)
-    );
-
-    this.game = new GameEngine(this.player, this.gameOptions);
+    this.game = new GameEngine(this.player);
   }
 
   resetFields() {
-    this.result = '';
-    this.playerChoiceStr = '';
-    this.AIchoiceStr = '';
+    [this.result, this.playerChoiceStr, this.AIchoiceStr] = Array(3).fill('');
   }
 
   play(ev) {
     this.resetFields();
     this.AIThinking = true;
     const playerChoice = ev.detail;
-
     this.playerChoiceStr = `You: ${playerChoice}`;
     setTimeout(() => {
       const gameResult = this.game.chooseWinner(playerChoice);
-      this.AIchoiceStr = ` | Bot : ${gameResult[0]}`;
-      this.result = `Result : ${gameResult[1]}`;
+      [this.AIchoiceStr, this.result] = gameResult;
       this.AIThinking = false;
     }, CONSTANTS.AI_RESPONSE_TIMEOUT);
   }
@@ -98,7 +89,7 @@ export class Game extends FirerMixin(LitElement) {
 
   renderGameOptions() {
     return html`
-      ${this.gameOptions.map(
+      ${this.game.gameOptions.map(
         gameOpt => html`
           <game-option
             @option-selected-event="${this.play}"
