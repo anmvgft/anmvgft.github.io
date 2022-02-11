@@ -57,3 +57,7 @@ npm run build
 ### Deploy url:
 
 https://anmvgft.github.io
+
+# Extras
+
+Two game modes, classic - spock
