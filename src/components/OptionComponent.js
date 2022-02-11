@@ -24,6 +24,7 @@ export class Option extends FirerMixin(LitElement) {
         display: inline-block;
         width: 100px;
         height: 100px;
+        color: transparent;
       }
       .option__btn:hover,
       .option__btn:active {
@@ -62,12 +63,15 @@ export class Option extends FirerMixin(LitElement) {
   render() {
     return html`
       <section class="option">
-        <article
+        <a
+          href="#"
           onclick=""
           @click="${this.selectOption}"
           @keydown="${this.selectOption}"
           class="option__btn option__btn--${this.name}"
-        ></article>
+        >
+          ${this.name}
+        </a>
       </section>
     `;
   }
