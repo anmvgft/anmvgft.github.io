@@ -41,6 +41,10 @@ export class Home extends FirerMixin(LitElement) {
         }
         .home__gameTypeSelect {
           margin-bottom: 30px;
+          padding: 7px;
+          font-size: 1.2em;
+          width: 100px;
+          text-align: center;
         }
       `,
     ];
