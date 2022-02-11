@@ -1,6 +1,6 @@
 export const CONSTANTS = {
   SAVE_PREFIX: 'RPS-',
-  ISPLAYING: 'isPlaying',
+  ISPLAYING: '_isPlaying',
   ROCK: 'rock',
   PAPER: 'paper',
   SCISSORS: 'scissors',
