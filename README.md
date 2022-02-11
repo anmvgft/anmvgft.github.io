@@ -15,7 +15,7 @@ npm install
 ### To serve locally, use this command:
 
 ```bash
-npm run serve
+npm run start
 ```
 
 # Testing
